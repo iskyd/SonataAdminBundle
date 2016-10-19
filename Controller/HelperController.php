@@ -112,9 +112,9 @@ class HelperController
 
         $extension = $this->twig->getExtension('form');
         $extension->initRuntime($this->twig);
-        $extension->renderer->setTheme($view, $admin->getFormTheme());
+        $this->twigFormRenderer->setTheme($view, $admin->getFormTheme());
 
-        return new Response($extension->renderer->searchAndRenderBlock($view, 'widget'));
+        return new Response($this->twigFormRenderer->searchAndRenderBlock($view, 'widget'));
     }
 
     /**
