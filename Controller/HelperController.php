@@ -52,13 +52,15 @@ class HelperController
      */
     protected $validator;
 
+    protected $twigFormRenderer;
+
     /**
      * @param \Twig_Environment  $twig
      * @param Pool               $pool
      * @param AdminHelper        $helper
      * @param ValidatorInterface $validator
      */
-    public function __construct(\Twig_Environment $twig, Pool $pool, AdminHelper $helper, $validator)
+    public function __construct(\Twig_Environment $twig, Pool $pool, AdminHelper $helper, $validator, $twigFormRenderer)
     {
         if (!($validator instanceof ValidatorInterface) && !($validator instanceof LegacyValidatorInterface)) {
             throw new \InvalidArgumentException('Argument 4 is an instance of '.get_class($validator).', expecting an instance of \Symfony\Component\Validator\Validator\ValidatorInterface or \Symfony\Component\Validator\ValidatorInterface');
@@ -68,6 +70,7 @@ class HelperController
         $this->pool = $pool;
         $this->helper = $helper;
         $this->validator = $validator;
+        $this->twigFormRenderer = $twigFormRenderer;
     }
 
     /**
